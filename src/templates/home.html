@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smartprompt</title>
+
+    <meta charset="UTF-8">
+    <meta property="og:title" content="avis-IME"/>
+    <meta property="og:description" content="App que avisa quando um professor do IME atualiza seu site." />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="/static/components/normalize.css/normalize.css">
+    <link rel="stylesheet" href="/static/css/site.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1>avis-IME</h1>
+    <p>app que avisa quando um professor do IME atualiza seu site!</p>
+
+    <section>
+      <h1>faça login</h1>
+      <form action="/login" method="post">
+        <fieldset>
+          <label for="login_email">Email</label>
+          <input type="text" id="login_email" name="email" />
+
+          <label for="login_password">Senha</label>
+          <input type="text" id="login_password" name="password" />
+        </fieldset>
+
+        <button>Logar</button>
+      </form>
+    </section>
+
+    <span>ou</span>
+
+    <section>
+      <h1>cadastre-se</h1>
+      <form action="/register" method="post">
+        <fieldset>
+          <label for="register_email">Email</label>
+          <input type="text" id="register_email" name="email" />
+
+          <label for="register_password">Senha</label>
+          <input type="text" id="register_password" name="password" />
+
+          <label for="register_password_confirm">Confirme a senha</label>
+          <input type="text" id="register_password_confirm" name="password_confirm" />
+        </fieldset>
+
+        <button>Cadastrar</button>
+      </form>
+    </section>
+
+    <script async src="lib/jquery.js"></script>
+  </body>
+</html>

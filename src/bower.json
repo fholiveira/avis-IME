@@ -1,0 +1,19 @@
+{
+  "name": "avis-IME",
+  "version": "0.1.0",
+  "authors": [
+    "Fernando Oliveira <fernando@fholiveira.com>"
+  ],
+  "description": "app que avisa quando um professor do IME-USP atualiza seu site",
+  "license": "AGPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.3"
+  }
+}

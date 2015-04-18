@@ -1,0 +1,5 @@
+blessings==1.6
+colorama==0.3.3
+nose==1.3.4
+wando-server==0.2.1
+yanc==0.3.3

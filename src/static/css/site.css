@@ -1,0 +1,68 @@
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+body > span, body > section {
+  margin: 10px;
+}
+
+body > span {
+  align-self: center;
+  font-size: 1.5em;
+}
+
+body > h1 {
+  font-size: 4em;
+  margin: 1.5em 0 .2em 0;
+}
+
+body > h1 + p {
+  font-size: 2em;
+  margin: .2em 0 1.5em 0;
+}
+
+h1, h1 + p {
+  text-align: center;
+  width: 100%;
+}
+
+section {
+  display: flex;
+  align-items: initial;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 40px;
+  border: 1px solid #c0c0c0;
+  border-radius: 1em;
+}
+
+section > * {
+  align-self:center;
+}
+
+section > h1 {
+  margin: 0 0 10px 0;
+}
+
+form * {
+    display: block;
+}
+
+form > fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+form > fieldset > input {
+  margin-bottom: 10px;
+}
+
+form > button {
+  margin: 10px 0 10px auto;
+}
+
+
