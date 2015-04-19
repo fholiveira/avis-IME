@@ -7,18 +7,28 @@ def setup_database(config):
     else:
         db.bind(config.DB_PROVIDER, **config.DB_DATA)
 
+    db.generate_mapping(check_tables=True, create_tables=True)
+
 
 from config import load_config
 from flask import Flask
-from views import home
 
 
 config = load_config()
-setup_database(config)
+
+
+from views import access, home
+from auth import login_manager
+
+login_manager.session_protection = config.SECRET_KEY
 
 webapp = Flask(__name__)
+login_manager.init_app(webapp)
 webapp.config.from_object(config)
+webapp.register_blueprint(access)
 webapp.register_blueprint(home)
+
+setup_database(config)
 
 
 if __name__ == '__main__':

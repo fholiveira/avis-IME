@@ -22,5 +22,8 @@ configure:
 	@$(ACTIVE_VENV) && pip install -r $(REQUIREMENTS_DEV)
 	@$(ACTIVE_VENV) && pip install -r $(REQUIREMENTS)
 
+	@cat /dev/null > avis-ime.db
+	@cat /dev/null > avis-ime-test.db
+
 deps:
 	@$(ACTIVE_VENV) && pip freeze > $(REQUIREMENTS)
