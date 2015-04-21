@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from flask.ext.login import current_user, login_required
+from .forms import RegistrationForm, LoginForm
 from pony.orm import db_session, select
 from models import Site, User
 
@@ -19,7 +20,9 @@ def index():
 
         return render_template('feed.html', sites=sites)
 
-    return render_template('home.html')
+    return render_template('home.html',
+                           login=LoginForm(), 
+                           registration=RegistrationForm())
 
 
 @home.route('/feed', methods=['POST'])

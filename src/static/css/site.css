@@ -178,6 +178,37 @@ body.feed {
   min-height: 100vh;
 }
 
+body.home form > fieldset + ul.errors {
+  color: red;
+  margin: 0;
+  border: 1px solid red;
+  padding: 10px 0;
+  width: 100%;
+  background-color: rgba(255, 0, 0, 0.16);
+  font-size: .8em;
+}
+
+body.home form > fieldset + ul.errors > li {
+  margin-left: 10px;
+  display: inline-block;
+}
+
+body.home form > fieldset > input.error + ul.errors > li {
+  color: red;
+}
+
+body.home form > fieldset > input.error + ul.errors {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-size: .8em;
+}
+
+body.home form > fieldset > input.error {
+  margin-bottom: 4px;
+  
+  border: 1px solid red;
+}
+
 .hidden {
   display: none !important;
 }

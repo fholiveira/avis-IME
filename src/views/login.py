@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask.ext.login import login_required, logout_user, login_user
+from .forms import RegistrationForm, LoginForm
 from pony.orm import db_session, get
 from hashlib import sha224
 from models import User
@@ -11,13 +12,23 @@ access = Blueprint('login', __name__)
 @access.route('/login', methods=['POST'])
 @db_session
 def login():
-    email = request.form['email']
-    passwd = request.form['password'] 
+    form = LoginForm()
+    if not form.validate():
+        return render_template('home.html',
+                               login=form, 
+                               registration=RegistrationForm())
 
-    hash = sha224(passwd.encode('UTF-8')).hexdigest()
+    hash = sha224(form.password.data.encode('UTF-8')).hexdigest()
     
-    user = get(user for user in User if user.email == email and user.password == hash)
-    print(hash, user)
+    user = get(user for user in User
+               if user.email == form.email.data and user.password == hash)
+
+    if not user:
+        flash('Usuário ou senha inválidos.')
+        return render_template('home.html',
+                               login=form, 
+                               registration=RegistrationForm())
+
     login_user(user)
 
     return redirect(url_for('home.index'))
@@ -25,19 +36,18 @@ def login():
 @access.route('/register', methods=['POST'])
 @db_session
 def register():
-    email = request.form['email']
-    passwd = request.form['password'] 
-    passwd_confirm = request.form['password_confirm']
+    form = RegistrationForm()
+    if not form.validate():
+        return render_template('home.html',
+                               login=LoginForm(), 
+                               registration=form)
 
-    if passwd != passwd_confirm:
-        return 'As senhas não batem!', 401
-
-    hash = sha224(passwd.encode('UTF-8')).hexdigest()
-    user = User(email=email, password=str(hash))
+    hash = sha224(form.password.data.encode('UTF-8')).hexdigest()
+    user = User(email=form.email.data, password=str(hash))
     
     login_user(user)
 
-    return redirect(url_for('index'))
+    return redirect(url_for('home.index'))
 
 @access.route("/logout")
 @login_required

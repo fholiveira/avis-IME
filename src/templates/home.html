@@ -1,3 +1,14 @@
+{% macro render_field(field) %}
+  {{ field.label }}
+  {{ field(class_='error' if field.errors else '')|safe }}
+  {% if field.errors %}
+    <ul class="errors">
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,13 +32,19 @@
       <h1>faça login</h1>
       <form action="/login" method="post">
         <fieldset>
-          <label for="login_email">Email</label>
-          <input type="text" id="login_email" name="email" />
-
-          <label for="login_password">Senha</label>
-          <input type="password" id="login_password" name="password" />
+          {{ login.hidden_tag() }}
+          {{ render_field(login.email) }}
+          {{ render_field(login.password) }}
         </fieldset>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=errors>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         <button>Logar</button>
       </form>
     </section>
@@ -38,16 +55,11 @@
       <h1>cadastre-se</h1>
       <form action="/register" method="post">
         <fieldset>
-          <label for="register_email">Email</label>
-          <input type="text" id="register_email" name="email" />
-
-          <label for="register_password">Senha</label>
-          <input type="password" id="register_password" name="password" />
-
-          <label for="register_password_confirm">Confirme a senha</label>
-          <input type="password" id="register_password_confirm" name="password_confirm" />
+          {{ registration.hidden_tag() }}
+          {{ render_field(registration.email) }}
+          {{ render_field(registration.password) }}
+          {{ render_field(registration.confirm) }}
         </fieldset>
-
         <button>Cadastrar</button>
       </form>
     </section>
