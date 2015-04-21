@@ -19,7 +19,7 @@
     <header>
       <h1>avis-IME</h1>
 
-      <em>fernando@fholiveira.com</em>
+      <em>{{current_user.email}}</em>
       <a href="/logout">sair</a>
     </header>
 
@@ -30,33 +30,22 @@
       </header>
 
       <ul>
+        {% for subscribed, site in sites %}
         <li>
-          <input id="aaa" type="checkbox"><label for="aaa"></label>
+          <input id="d{{site.id}}" type="checkbox" {{ 'checked' if subscribed else '' }}><label for="d{{site.id}}"></label>
           <label>
-            <strong>Cálculo para funções de uma variável real I</strong>
-            <small><em>Disciplina: </em>MAT01</small>
-            <small><em>Professor: </em>José da Silva</small>
+            <strong>{{site.course}}</strong>
+            <small><em>Disciplina: </em>{{site.course_code}}</small>
+            <small><em>Professor: </em>{{site.teacher}}</small>
           </label>
         </li>
-        <li>
-          <input id="bbb" type="checkbox"><label for="bbb"></label>
-          <label>MAT01 - Prof. José da silva</label>
-        </li>
-        <li>
-          <input id="ccc" type="checkbox"><label for="ccc"></label>
-          <label>MAT01 - Prof. José da silva</label>
-        </li>
-        <li>
-          <input id="ddd" type="checkbox"><label for="ddd"></label>
-          <label>MAT01 - Prof. José da silva</label>
-        </li>
-        <li>
-          <input id="eee" type="checkbox"><label for="eee"></label>
-          <label>MAT01 - Prof. José da silva</label>
-        </li>
+        {% endfor %}
       </ul>
     </section>
 
     <footer>De hora em hora verificamos se os sites das matérias selecionadas foram alterados. Se algum foi, não se preocupe, te mandamos um email para avisar.</footer>
+
+    <script src="/static/components/jquery/dist/jquery.min.js"></script>
+    <script src="/static/js/home.js"></script>
   </body>
 </html>

@@ -1,11 +1,11 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask.ext.login import login_required, logout_user, login_user
 from pony.orm import db_session, get
 from hashlib import sha224
 from models import User
 
 
-access = Blueprint('auth', __name__)
+access = Blueprint('login', __name__)
 
 
 @access.route('/login', methods=['POST'])
@@ -20,7 +20,7 @@ def login():
     print(hash, user)
     login_user(user)
 
-    return 'Bem vindo ' + user.email
+    return redirect(url_for('home.index'))
 
 @access.route('/register', methods=['POST'])
 @db_session
@@ -30,15 +30,17 @@ def register():
     passwd_confirm = request.form['password_confirm']
 
     if passwd != passwd_confirm:
-        return 'As senhas não batem!'
+        return 'As senhas não batem!', 401
 
     hash = sha224(passwd.encode('UTF-8')).hexdigest()
     user = User(email=email, password=str(hash))
     
+    login_user(user)
 
-    return "Foi!"
+    return redirect(url_for('index'))
 
 @access.route("/logout")
 @login_required
 def logout():
     logout_user()
+    return redirect(url_for('home.index'))
