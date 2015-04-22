@@ -19,4 +19,7 @@ if __name__ == '__main__':
     config = load_config()
     setup_database(config)
 
-    Postman(config).send_pending_mails()
+    postman = Postman(config)
+    for message in postman.get_pending_messages():
+        postman.send(message)
+    

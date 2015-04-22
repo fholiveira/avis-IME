@@ -13,25 +13,31 @@ class Postman:
         self.config = config
 
     @db_session
-    def send_pending_mails(self):
+    def get_pending_messages(self):
+        messages = []
         for site in select(s for s in Site):
             html = get(site.url)
             hash = sha224(html.text.encode('UTF-8')).hexdigest()
 
             if site.hash == hash:
-                return
-
-            if any(site.subscribers):
-                self.send(Message(site))
+                continue
 
             site.hash = hash
+
+            if any(site.subscribers):
+                site_data = site.to_dict()
+                site_data['subscribers'] = [s.email for s in site.subscribers]
+
+                messages.append(Message(site_data))
+
+        return messages
+
 
     def send(self, message):
         email = MIMEMultipart('alternative')
         email['Subject'] = message.subject()
         email['From'] = self.config.MAIL_SENDER
         email['To'] = ', '.join(message.recipients())
-        print(email['To'])
 
         email.attach(MIMEText(message.text_body(), 'plain'))
         email.attach(MIMEText(message.body(), 'html'))

@@ -6,10 +6,10 @@ from models import Site, User
 class Message:
     def __init__(self, site):
         self.site = site
+        print(site)
 
-    @db_session
     def recipients(self):
-        return [user.email for user in self.site.subscribers]
+        return [email for email in self.site['subscribers']]
 
     def body(self):
         return """\
@@ -18,14 +18,14 @@ class Message:
                 <body>
                     <p>Olá!<br>
                         <br>
-                        O professor de {0.course} atualizou seu site. Clique <a href="{0.url}">aqui</a> para conferir as mudanças.
+                        O professor de {course} atualizou seu site. Clique <a href="{url}">aqui</a> para conferir as mudanças.
                     </p>
                 </body>
             </html>
-        """.format(self.site)
+        """.format(**self.site)
 
     def text_body(self):
-        return "Olá! O professor de {0.course} atualizou seu site. Clique <a href=\"{0.url}\">aqui</a> para conferir as mudanças.".format(self.site)
+        return "Olá! O professor de {course} atualizou seu site. Clique <a href=\"{url}\">aqui</a> para conferir as mudanças.".format(**self.site)
 
     def subject(self):
-        return "O professor de {0.course} atualizou o seu site".format(self.site)
+        return "O professor de {course} atualizou o seu site".format(**self.site)
