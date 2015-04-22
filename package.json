@@ -1,0 +1,31 @@
+{
+  "name": "avis-ime",
+  "version": "0.1.0",
+  "description": "app que avisa quando um professor do IME atualiza seu site",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fholiveira/avis-IME.git"
+  },
+  "keywords": [
+    "ime",
+    "math"
+  ],
+  "author": "Fernando Oliveira",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/fholiveira/avis-IME/issues"
+  },
+  "homepage": "https://github.com/fholiveira/avis-IME#readme",
+  "dependencies": {
+    "bower": "^1.4.1"
+  },
+  "scripts": {
+    "postinstall" : "bower install"
+  }
+}
