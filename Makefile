@@ -11,6 +11,10 @@ serve: export AVISIME_ENV=DEV
 serve: 
 	@$(ACTIVE_VENV) && ./src/application.py
 
+notify: export AVISIME_ENV=DEV
+notify: 
+	@$(ACTIVE_VENV) && ./src/notify.py
+
 test: export AVISIME_ENV=TEST
 test:
 	@cd tests && $(MAKE)
