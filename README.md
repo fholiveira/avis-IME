@@ -1,8 +1,8 @@
-# wowbagger
-a infinitely prolonged RESTful API
+# avis-IME
+app que avisa quando um professor do IME atualiza seu site
 
-[![Build Status](https://snap-ci.com/contasdoape/wowbagger/branch/master/build_image)](https://snap-ci.com/contasdoape/wowbagger/branch/master)
-[![Heroku Staging](https://heroku-badge.herokuapp.com/?app=wowbagger)](http://wowbagger.herokuapp.com/)
+[![Build Status](https://snap-ci.com/fholiveira/avis-IME/branch/master/build_image)](https://snap-ci.com/fholiveira/avis-IME/branch/master)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=avis-IME)](http://wowbagger.herokuapp.com/)
 
 ### Development system-wide dependencies
  - [GNU Make](http://www.gnu.org/software/make/) >= 4.1 
@@ -10,14 +10,9 @@ a infinitely prolonged RESTful API
 
 ### Setup environment
 ```bash
-git clone https://github.com/contasdoape/wowbagger.git
-cd wowbagger
+git clone https://github.com/contasdoape/avis-IME.git
+cd avis-IME
 make configure
-```
-
-### Test application
-```bash
-make test
 ```
 
 ### Run application
@@ -25,8 +20,7 @@ make test
 make serve
 ```
 
-### Built on top of
- - [Flask](http://flask.pocoo.org/)
- - [Pony ORM](http://ponyorm.com/)
- - [Gunicorn](http://gunicorn.org/)
- - [nose](http://nose.readthedocs.org/)
+### Send notifications
+```bash
+make notify
+```
