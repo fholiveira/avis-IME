@@ -6,7 +6,6 @@ from models import Site, User
 class Message:
     def __init__(self, site):
         self.site = site
-        print(site)
 
     def recipients(self):
         return [email for email in self.site['subscribers']]
