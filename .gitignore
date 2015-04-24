@@ -8,6 +8,7 @@ __pycache__/
 #Bower
 src/static/components
 node_modules/
+ignore/
 
 #databses
 *.db
