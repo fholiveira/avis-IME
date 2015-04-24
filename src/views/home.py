@@ -16,8 +16,6 @@ def index():
         sites= [(site.id in feed, site) 
                 for site in select(s for s in Site)]
 
-        print (feed, sites)
-
         return render_template('feed.html', sites=sites)
 
     return render_template('home.html',
