@@ -7,41 +7,52 @@ from models import GateKeeper
 access = Blueprint('login', __name__)
 
 
+def try_again(form):
+    load_form = lambda tipo: form if isinstance(form, tipo) else tipo()
+
+    return render_template('home.html',
+                           login = load_form(LoginForm), 
+                           registration = load_form(RegistrationForm))
+
+
+@access.route('/login', methods=['GET'])
+@access.route('/register', methods=['GET'])
+def go_to_home():
+    return redirect(url_for('home.index'))
+
+
 @access.route('/login', methods=['POST'])
 def login():
     form = LoginForm()
-    try_again = render_template('home.html',
-                                login=form, 
-                                registration=RegistrationForm())
 
     if not form.validate():
-        return try_again
+        return try_again(form)
 
     user = GateKeeper().grant_access(form.email.data, form.password.data)
 
     if not user:
         flash('Usuário ou senha inválidos.')
-        return try_again
+        return try_again(form)
 
     login_user(user)
 
-    return redirect(url_for('home.index'))
+    return go_to_home()
+
 
 @access.route('/register', methods=['POST'])
 def register():
     form = RegistrationForm()
     if not form.validate():
-        return render_template('home.html',
-                               login=LoginForm(), 
-                               registration=form)
+        return try_again(form)
 
     user = GateKeeper().register(form.email.data, form.password.data)
     login_user(user)
 
-    return redirect(url_for('home.index'))
+    return go_to_home()
+
 
 @access.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home.index'))
+    return go_to_home()
