@@ -10,13 +10,13 @@ gulp = require 'gulp'
 del = require 'del'
 
 
-glob_less = 'src/less/*.less'
-glob_css = 'src/css/*'
-path_css = 'src/css/'
+glob_less = 'src/static/less/*.less'
+glob_css = 'src/static/css/*'
+path_css = 'src/static/css/'
 
 
 gulp.task 'compile less', ->
-  gulp.src 'src/less/site.less'
+  gulp.src 'src/static/less/site.less'
     .pipe do plumber
     .pipe do sourcemaps.init
     .pipe do less
@@ -39,7 +39,7 @@ gulp.task 'deploy less', ->
 
 gulp.task 'watch less', ->
   gulp.watch glob_less, ->
-    gulp.src 'src/less/site.less'
+    gulp.src 'src/static/less/site.less'
       .pipe do plumber
       .pipe do sourcemaps.init
       .pipe do less
