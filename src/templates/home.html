@@ -1,67 +1,45 @@
-{% macro render_field(field) %}
-  {{ field.label }}
-  {{ field(class_='error' if field.errors else '')|safe }}
-  {% if field.errors %}
-    <ul class="errors">
-      {% for error in field.errors %}
-        <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endmacro %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>avis-IME</title>
+{% from '_macros.html' import render_field %}
 
-    <meta charset="UTF-8">
-    <meta property="og:title" content="avis-IME"/>
-    <meta property="og:description" content="App que avisa quando um professor do IME atualiza seu site." />
-    <meta property="og:type" content="website" />
+{% extends 'base.html' %}
+{% set body_class = 'home' %}
 
-    <link rel="stylesheet" href="/static/lib/normalize.css/normalize.css">
-    <link rel="stylesheet" href="/static/css/site.css">
+{% block content %}
+  <h1>avis-IME</h1>
+  <p>app que avisa quando um professor do IME atualiza seu site!</p>
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-  </head>
-  <body class="home">
-    <h1>avis-IME</h1>
-    <p>app que avisa quando um professor do IME atualiza seu site!</p>
-
-    <section>
-      <h1>faça login</h1>
-      <form action="/login" method="post">
-        <fieldset>
-          {{ login.hidden_tag() }}
-          {{ render_field(login.email) }}
-          {{ render_field(login.password) }}
-        </fieldset>
-        {% with messages = get_flashed_messages() %}
+  <section>
+    <h1>faça login</h1>
+    <form action="/login" method="post">
+      <fieldset>
+        {{ login.hidden_tag() }}
+        {{ render_field(login.email) }}
+        {{ render_field(login.password) }}
+      </fieldset>
+      {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul class=errors>
-          {% for message in messages %}
-          <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
+          <ul class=errors>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
         {% endif %}
-        {% endwith %}
-        <button>Logar</button>
-      </form>
-    </section>
+      {% endwith %}
+      <button>Logar</button>
+    </form>
+  </section>
 
-    <span>ou</span>
+  <span>ou</span>
 
-    <section>
-      <h1>cadastre-se</h1>
-      <form action="/register" method="post">
-        <fieldset>
-          {{ registration.hidden_tag() }}
-          {{ render_field(registration.email) }}
-          {{ render_field(registration.password) }}
-          {{ render_field(registration.confirm) }}
-        </fieldset>
-        <button>Cadastrar</button>
-      </form>
-    </section>
-  </body>
-</html>
+  <section>
+    <h1>cadastre-se</h1>
+    <form action="/register" method="post">
+      <fieldset>
+        {{ registration.hidden_tag() }}
+        {{ render_field(registration.email) }}
+        {{ render_field(registration.password) }}
+        {{ render_field(registration.confirm) }}
+      </fieldset>
+      <button>Cadastrar</button>
+    </form>
+  </section>
+{% endblock %}

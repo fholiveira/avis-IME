@@ -1,51 +1,38 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>avis-IME</title>
+{% extends 'base.html' %}
+{% set body_class = 'feed' %}
 
-    <meta charset="UTF-8">
-    <meta property="og:title" content="avis-IME"/>
-    <meta property="og:description" content="App que avisa quando um professor do IME atualiza seu site." />
-    <meta property="og:type" content="website" />
+{% block content %}
+  <header>
+    <h1><a href="/">avis-IME</a></h1>
 
-    <link rel="stylesheet" href="/static/lib/normalize.css/normalize.css">
-    <link rel="stylesheet" href="/static/css/site.css">
-    <link rel="stylesheet" href="/static/css/toogle.css">
+    <em>{{current_user.email}}</em>
+    <a href="/logout">sair</a>
+  </header>
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-  </head>
-  <body class="feed">
-
+  <section>
     <header>
-      <h1><a href="/">avis-IME</a></h1>
-
-      <em>{{current_user.email}}</em>
-      <a href="/logout">sair</a>
+      <h1>Quais matérias você quer monitorar?</h1>
+      <input type="search" placeholder="Pesquisar...">
     </header>
 
-    <section>
-      <header>
-        <h1>Quais matérias você quer monitorar?</h1>
-        <input type="search" placeholder="Pesquisar...">
-      </header>
+    <ul>
+      {% for subscribed, site in sites %}
+      <li>
+        <input id="d{{site.id}}" type="checkbox" {{ 'checked' if subscribed else '' }}><label for="d{{site.id}}"></label>
+        <label>
+          <strong>{{site.course}}</strong>
+          <small><em>Disciplina: </em>{{site.course_code}}</small>
+          <small><em>Professor: </em>{{site.teacher}}</small>
+        </label>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 
-      <ul>
-        {% for subscribed, site in sites %}
-        <li>
-          <input id="d{{site.id}}" type="checkbox" {{ 'checked' if subscribed else '' }}><label for="d{{site.id}}"></label>
-          <label>
-            <strong>{{site.course}}</strong>
-            <small><em>Disciplina: </em>{{site.course_code}}</small>
-            <small><em>Professor: </em>{{site.teacher}}</small>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
-    </section>
+  <footer>De hora em hora verificamos se os sites das matérias selecionadas foram alterados. Quando algum for, não se preocupe, te mandamos um email para avisar.</footer>
+{% endblock %}
 
-    <footer>De hora em hora verificamos se os sites das matérias selecionadas foram alterados. Quando algum for, não se preocupe, te mandamos um email para avisar.</footer>
-
-    <script src="/static/lib/jquery.js"></script>
-    <script src="/static/js/home.js"></script>
-  </body>
-</html>
+{% block scripts %}
+  <script src="/static/lib/jquery.js"></script>
+  <script src="/static/js/home.js"></script>
+{% endblock %}

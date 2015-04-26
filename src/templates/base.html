@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>avis-IME</title>
+
+    <meta charset="UTF-8">
+    <meta property="og:title" content="avis-IME"/>
+    <meta property="og:description" content="App que avisa quando um professor do IME atualiza seu site." />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="/static/lib/normalize.css">
+    <link rel="stylesheet" href="/static/css/site.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+
+    {% block styles %}
+    {% endblock %}
+  </head>
+  <body class="{{ body_class }}">
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>
