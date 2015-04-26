@@ -28,6 +28,8 @@ configure:
 
 	@cat /dev/null > avis-ime.db
 	@cat /dev/null > avis-ime-test.db
+	
+	@npm install 
 
 deps:
 	@$(ACTIVE_VENV) && pip freeze > $(REQUIREMENTS)
