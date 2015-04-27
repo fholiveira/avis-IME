@@ -11,6 +11,9 @@ bower_components/
 node_modules/
 ignore/
 
+src/static/css/
+src/static/js/
+
 #databses
 *.db
 

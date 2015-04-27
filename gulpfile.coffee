@@ -1,6 +1,5 @@
+require('require-dir') 'tasks/'
 gulp = require 'gulp'
-
-directory = require('require-dir') 'tasks/'
 
 
 gulp.task 'compile', ['resolve dependencies', 'compile coffee', 'compile less']
