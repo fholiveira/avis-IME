@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "postinstall": "gulp compile"
+    "postinstall": "gulp deploy"
   },
   "repository": {
     "type": "git",
