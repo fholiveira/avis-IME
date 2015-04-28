@@ -6,7 +6,7 @@ gulp = require 'gulp'
 del = require 'del'
 
 
-path = 'src/static/lib/*'
+path = 'src/static/lib/'
 
 
 gulp.task 'resolve dependencies', ->
