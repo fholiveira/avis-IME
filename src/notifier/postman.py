@@ -29,12 +29,9 @@ class Postman:
     @db_session
     def update_and_get_site(self, id, hash):
         site = Site[id]
-        site.hash = hash
+        site.update(hash)
 
-        site_data = site.to_dict()
-        site_data['subscribers'] = [s.email for s in site.subscribers]
-
-        return site_data
+        return site.to_pretty_dict()
 
     def get_pending_messages(self):
         changed_sites = list(self._get_changed_sites())
@@ -49,7 +46,6 @@ class Postman:
         email = MIMEMultipart('alternative')
         email['Subject'] = message.subject()
         email['From'] = self.config.MAIL_SENDER
-        email['To'] = ', '.join(message.recipients())
 
         email.attach(MIMEText(message.text_body(), 'plain'))
         email.attach(MIMEText(message.body(), 'html'))
