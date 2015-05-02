@@ -83,13 +83,30 @@ body.feed {
           vertical-align: middle;
 
           & > strong {
-            display: block;
+            display: inline-block;
             font-weight: bold;
             font-size: 1em;
           }
 
+          & > a {
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAlAAAAJQBeb8N7wAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFjSURBVFiF7Ze/SsUwFMbPEUk3n+A+g/O9q+BQl6Yd7lM4ueiom/cJBNEXsEOToRTBB3DpWzgKFxyEtIXjYqXURNIk0qXfVE44+X6HnPwpcs4J7JQLIbbjYJIkl4h4aznHLx24JvaSUu6I6Go2AF+IIAA+EMEAXCEODfF7AKi/vz8RUQHAm82ETdPcRVF0DgArZwBEfCmKIreZYKg4jo8YY8+25gABl6A3R8T1lLwgAK7mQQB8zL0BJpprm9gZYKJ53bbtsW6LOgE4mJ+WZbnXnRNOAIyxrY05Eb0qpU7Kstz3MSnlDgBuvACklA8WJ17ddd1ZVVUf4wEhxHWf79wD40qG0lVuyvfaBcNKBjJWrssP/R74aTjbfNNlNBmCc/6ulMpNlWdZtiKizb8AAAAIIR7/GieiDRE9jeNB3wMuWgAWgNkBtNuQiNZpmgY1IiLt5WU6By6IbP/Y/DT7EiwAswN8AevcwAcO0tZJAAAAAElFTkSuQmCC);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 10px;
+            height: 10px;
+            vertical-align: baseline;
+            margin-left: 10px;
+            display: inline-block; 
+          }
+
           & > small:nth-child(3) {
-            padding-left: 20px;
+            
+            &:before {
+              content: '';
+              height: 0;
+              display: block;
+            }
           }
 
           & > small > em {

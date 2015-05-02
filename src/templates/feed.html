@@ -20,7 +20,7 @@
       <li>
         <input id="d{{site.id}}" type="checkbox" {{ 'checked' if subscribed else '' }}><label for="d{{site.id}}"></label>
         <label>
-          <strong>{{site.course}}</strong>
+          <strong>{{site.course}}</strong><a href="{{ site.url }}" target="_blank"></a>
           <small><em>Disciplina: </em>{{site.course_code}}</small>
           <small><em>Professor: </em>{{site.teacher}}</small>
         </label>
