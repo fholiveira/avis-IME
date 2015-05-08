@@ -3,6 +3,7 @@ app que avisa quando um professor do IME atualiza seu site
 
 [![Build Status](https://snap-ci.com/fholiveira/avis-IME/branch/master/build_image)](https://snap-ci.com/fholiveira/avis-IME/branch/master)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=avis-ime)](http://wowbagger.herokuapp.com/)
+[![Dependency Status](https://gemnasium.com/fholiveira/avis-IME.svg)](https://gemnasium.com/fholiveira/avis-IME)
 
 ### Development system-wide dependencies
  - [GNU Make](http://www.gnu.org/software/make/) >= 4.1 
