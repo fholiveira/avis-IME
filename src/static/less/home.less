@@ -42,44 +42,5 @@ body.home {
     & > h1 {
       margin: 0 0 10px 0;
     }
-
-    form {
-      * {
-        display: block;
-      }
-
-      & > button {
-        margin: 10px 0 10px auto;
-      }
-
-      & > fieldset {
-        padding: 0;
-        margin: 0;
-        border: none;
-        & + ul.errors {
-          color: red;
-        }
-
-        & > input {
-          margin-bottom: 10px;
-
-          &.error {
-            border: 1px solid red;
-            margin-bottom: 4px;
-
-            & + ul.errors {
-              margin: 0 0 10px 0;
-              font-size: .8em;
-              padding: 0;
-
-              & > li {
-                color: red;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }
-
