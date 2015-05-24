@@ -1,9 +1,8 @@
 from email.mime.multipart import MIMEMultipart
 from pony.orm import select, db_session
+from .comparator import SiteComparator
 from email.mime.text import MIMEText
 from .message import Message
-from hashlib import sha224
-from requests import request
 from models import Site
 import smtplib
 
@@ -19,12 +18,11 @@ class Postman:
     def _get_changed_sites(self):
         sites = self._get_hashes()
 
-        for id, url, old_hash in sites:
-            html = request('GET', url, timeout=30)
-            current_hash = str(sha224(html.text.encode('UTF-8')).hexdigest())
+        comparator = SiteComparator()
 
-            if current_hash != old_hash:
-                yield (id, current_hash)
+        for id, url, old_hash in sites:
+            if comparator.url_and_hash(url, old_hash):
+                yield (id, comparator.get_hash(url))
 
     @db_session
     def update_and_get_site(self, id, hash):
