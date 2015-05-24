@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% set body_class = 'logged ' + page_class %}
+
+{% block content %}
+  <header>
+    <h1><a href="/">avis-IME</a></h1>
+
+    <em>{{current_user.email}}</em>
+    <a href="/logout">sair</a>
+  </header>
+
+  <section>
+    {% block logged_content %}
+    {% endblock %}
+  </section>
+
+  <footer>De hora em hora verificamos se os sites das matérias selecionadas foram alterados. Quando algum for, não se preocupe, te mandamos um email para avisar.</footer>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/lib/jquery.js"></script>
+
+  {% block logged_scripts %}
+  {% endblock %}
+{% endblock %}
+

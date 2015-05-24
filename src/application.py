@@ -17,7 +17,7 @@ from flask import Flask
 config = load_config()
 
 
-from views import access, home
+from views import access, home, courses
 from auth import login_manager
 
 login_manager.session_protection = config.SECRET_KEY
@@ -25,8 +25,10 @@ login_manager.session_protection = config.SECRET_KEY
 webapp = Flask(__name__)
 login_manager.init_app(webapp)
 webapp.config.from_object(config)
+
 webapp.register_blueprint(access)
 webapp.register_blueprint(home)
+webapp.register_blueprint(courses)
 
 setup_database(config)
 

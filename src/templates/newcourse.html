@@ -1,0 +1,36 @@
+{% from '_macros.html' import render_field %}
+{% extends 'logged.html' %}
+
+{% set page_class = 'new course' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block logged_content %}
+  <header>
+    <h1>Monitorar uma nova matéria</h1>
+  </header>
+
+  <form action="/courses/new" method="post">
+    <fieldset class=row>
+      {{ form.hidden_tag() }}
+
+      <div class="code">{{ render_field(form.code) }}</div>
+      <div class="name">{{ render_field(form.name) }}</div>
+
+      <div class="teacher">{{ render_field(form.teacher) }}</div>
+
+      <div class="url">{{ render_field(form.url) }}</div>
+    </fieldset>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=errors>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <button>Salvar</button>
+  </form>
+{% endblock %}

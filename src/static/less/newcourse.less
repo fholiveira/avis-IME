@@ -1,0 +1,52 @@
+body.new.course {
+  & > section {
+    align-items: center;
+    padding: 64px 30px;
+    margin: 0;
+
+    form  {
+      max-width: 1024px;
+
+       & > button {
+        text-shadow: 1px 1px 3px #666666;
+        box-shadow: 0px 1px 3px #666666;
+        text-decoration: none;
+        background: #707070;
+        border-radius: 5px;
+        padding: 10px 20px 10px 20px;
+        margin: 10px 10px 0 auto;
+        color: #ffffff;
+        display: block;
+        border: none;
+
+        &:hover {
+          background: #606060;
+          text-decoration: none;
+        }
+      }
+
+      fieldset {
+        box-sizing: border-box;
+        white-space: normal;
+        border: none;
+        font-size: 0;
+
+        div {
+          box-sizing: border-box;
+          display: inline-block;
+          font-size: 16px;
+          padding: 10px;
+
+          &.teacher, &.url { width: 100%; }
+          &.code { width: 20%; }
+          &.name { width: 80%; }
+
+          & > input {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

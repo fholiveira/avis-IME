@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, TextField, PasswordField
+from wtforms import StringField, TextField, PasswordField, DateField
 from wtforms.validators import Required, Email, EqualTo, ValidationError
 from models import GateKeeper
 
@@ -17,3 +17,12 @@ class RegistrationForm(Form):
 class LoginForm(Form):
     email = TextField('Email', [Email(message='Email inválido.')])
     password = PasswordField('Senha', [Required()])
+
+
+class CourseForm(Form):
+    name = TextField('Nome da matéria', [Required()])
+    url = TextField('Endereço do site', [Required()])
+    teacher = TextField('Professor', [Required()])
+    code = TextField('Código', [Required()])
+
+    expires_on = TextField('* Parar de monitorar em', [Required()])

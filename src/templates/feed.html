@@ -1,38 +1,26 @@
-{% extends 'base.html' %}
-{% set body_class = 'feed' %}
+{% extends 'logged.html' %}
+{% set page_class = 'feed' %}
 
-{% block content %}
+{% block logged_content %}
   <header>
-    <h1><a href="/">avis-IME</a></h1>
-
-    <em>{{current_user.email}}</em>
-    <a href="/logout">sair</a>
+    <h1>Quais matérias você quer monitorar?</h1>
+    <input type="search" placeholder="Pesquisar...">
   </header>
 
-  <section>
-    <header>
-      <h1>Quais matérias você quer monitorar?</h1>
-      <input type="search" placeholder="Pesquisar...">
-    </header>
-
-    <ul>
-      {% for subscribed, site in sites %}
-      <li>
-        <input id="d{{site.id}}" type="checkbox" {{ 'checked' if subscribed else '' }}><label for="d{{site.id}}"></label>
-        <label>
-          <strong>{{site.course}}</strong><a href="{{ site.url }}" target="_blank"></a>
-          <small><em>Disciplina: </em>{{site.course_code}}</small>
-          <small><em>Professor: </em>{{site.teacher}}</small>
-        </label>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-
-  <footer>De hora em hora verificamos se os sites das matérias selecionadas foram alterados. Quando algum for, não se preocupe, te mandamos um email para avisar.</footer>
+  <ul>
+    {% for subscribed, site in sites %}
+    <li>
+      <input id="d{{site.id}}" type="checkbox" {{ 'checked' if subscribed else '' }}><label for="d{{site.id}}"></label>
+      <label>
+        <strong>{{site.course}}</strong><a href="{{ site.url }}" target="_blank"></a>
+        <small><em>Disciplina: </em>{{site.course_code}}</small>
+        <small><em>Professor: </em>{{site.teacher}}</small>
+      </label>
+    </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
 
-{% block scripts %}
-  <script src="/static/lib/jquery.js"></script>
+{% block logged_scripts %}
   <script src="/static/js/feed.js"></script>
 {% endblock %}
